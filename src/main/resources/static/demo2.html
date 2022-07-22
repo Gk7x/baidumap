@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Baidu Map-覆盖物 </title>
+    <style type="text/css">
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container{height:100%}
+    </style>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=yUQzW1VOLrpoEv55cgXO2VVWqPHwnPhT"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    var map = new BMapGL.Map("container");          // 创建地图实例
+    var point = new BMapGL.Point(116.404, 39.915);  // 创建点坐标
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var point2 = new BMapGL.Point(116.404, 39.915);
+    var marker = new BMapGL.Marker(point);        // 创建标注
+    map.addOverlay(marker);                     // 将标注添加到地图中
+
+
+    var myIcon = new BMapGL.Icon("logo.png", new BMapGL.Size(180,53), //图片地址  以及   图片的分辨率
+        {
+        // 指定定位位置。
+        anchor: new BMapGL.Size(10, 25),    //第一参数： 左右偏移    第二参数:上下偏移
+
+        //设置图片展示程度
+        imageOffset: new BMapGL.Size(0, 0 - 25)   // 第一个参数：左右截掉多少  第二个参数：上下截掉多少
+    });
+    // 创建标注对象并添加到地图
+    var marker = new BMapGL.Marker(point, {icon: myIcon});
+    map.addOverlay(marker);
+</script>
+</body>
+</html>
